@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %} covid chart {% endblock title %}
+
+
+
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<div id="chart-state" style="max-width=1000px !important" > 
+</div>
+
+<script>
+    $(document).ready(function(){
+        var options = {
+            chart: {
+              type: 'bar',height:500
+            },
+            series: [
+           
+              {
+                name: {{info.state}},
+                data: {{info.state|safe}}
+              }
+             
+              ,],
+            xaxis:{ 
+                categories: {{info.data|safe}}
+                 
+              }
+          }
+          
+          var chart = new ApexCharts(document.querySelector("#chart"), options);
+          
+          chart.render();
+    });
+</script>
+
+
+<div id="chart" style="max-width=1000px !important" > 
+</div>
+
+<script>
+    $(document).ready(function(){
+        var options = {
+            chart: {
+              type: 'bar',height:500
+            },
+            series: [{
+              name: 'Australia',
+              data: {{info.aus|safe}}
+            },
+            {
+                name: 'NSW',
+                data: {{info.nsw|safe}}
+              },
+              {
+                name: 'Victoria',
+                data: {{info.vic|safe}}
+              }
+              ,
+              {
+                name: 'Queensland',
+                data: {{info.qld|safe}}
+              }
+              ,
+              {
+                name: 'WA',
+                data: {{info.wa|safe}}
+              }
+              ,
+              {
+                name: 'SA',
+                data: {{info.sa|safe}}
+              }
+              ,
+              {
+                name: 'TAS',
+                data: {{info.tas|safe}}
+              }
+              ,
+              {
+                name: 'NT',
+                data: {{info.nt|safe}}
+              }
+             
+              ,],
+            xaxis:{ 
+                categories: {{info.data|safe}}
+                 
+              }
+          }
+          
+          var chart = new ApexCharts(document.querySelector("#chart"), options);
+          
+          chart.render();
+    });
+</script>
+
+{% endblock scripts %}
+
+{% block content %}
+    <canvas id="myChart"></canvas>
+{% endblock content %}
